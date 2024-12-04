@@ -327,140 +327,200 @@
 
 // console.log(greeting);
 
-// Closures
+// // Closures
 
-function greet(whatToSay) {
-  return function (name) {
-    console.log(whatToSay + " " + name);
-  };
+// function greet(whatToSay) {
+//   return function (name) {
+//     console.log(whatToSay + " " + name);
+//   };
+// }
+
+// // greet("Hi")("Dave");
+// const sayHi = greet("Hi");
+// // sayHi("Dave");
+
+// // With var
+// function buildFunctions() {
+//   let arr = [];
+//   for (var i = 0; i < 3; i++) {
+//     arr.push(function () {
+//       console.log(i);
+//     });
+//   }
+//   return arr;
+// }
+// const fs = buildFunctions();
+
+// fs[0]();
+// fs[1]();
+// fs[2]();
+
+// // With let
+// function buildFunctions2() {
+//   let arr = [];
+//   for (let i = 0; i < 3; i++) {
+//     arr.push(function () {
+//       console.log(i);
+//     });
+//   }
+//   return arr;
+// }
+// const fs2 = buildFunctions2();
+
+// fs2[0]();
+// fs2[1]();
+// fs2[2]();
+
+// // With var using closures
+// function buildFunctions3() {
+//   let arr = [];
+//   for (var i = 0; i < 3; i++) {
+//     arr.push(
+//       (function (j) {
+//         return function () {
+//           console.log(j);
+//         };
+//       })(i)
+//     );
+//   }
+//   return arr;
+// }
+// const fs3 = buildFunctions3();
+
+// fs3[0]();
+// fs3[1]();
+// fs3[2]();
+
+// function outer() {
+//   let count = 0; // Outer scope variable
+//   return function inner() {
+//     count++; // Accesses `count` from the outer scope
+//     console.log(count);
+//   };
+// }
+
+// const increment = outer(); // outer() returns `inner`
+// increment(); // 1
+// increment(); // 2
+// increment(); // 3
+
+// outer()(); // 1
+// outer()(); // 1
+// outer()(); // 1
+
+// // Function Factories
+
+// function makeGreeting(language) {
+//   return function (firstname, lastname) {
+//     if (language === "en") {
+//       console.log("Hello " + firstname + " " + lastname);
+//     }
+//     if (language === "es") {
+//       console.log("Hola " + firstname + " " + lastname);
+//     }
+//   };
+// }
+
+// const greetEnglish = makeGreeting("en");
+// const greetSpanish = makeGreeting("es");
+
+// greetEnglish("Dave", "Butkus");
+// greetSpanish("Dave", "Butkus");
+
+// // Closures and Callbacks
+
+// function sayHiLater() {
+//   const greeting = "Hi";
+
+//   setTimeout(function () {
+//     console.log(greeting);
+//   }, 3000);
+// }
+
+// sayHiLater();
+
+// function sayHiLater() {
+//   setTimeout(() => {
+//     console.log("Hi");
+//   }, 3000);
+// }
+
+// sayHiLater();
+
+// document.addEventListener("click", () => {
+//   console.log("Hi from click");
+// });
+
+// function tellMeWhenDone(callback) {
+//   const a = 1000;
+//   const b = 2000;
+
+//   callback();
+// }
+
+// tellMeWhenDone(function () {
+//   alert("I am done - alert");
+// });
+// tellMeWhenDone(function () {
+//   console.log("I am done - log");
+// });
+
+const person = {
+  firstname: "Dave",
+  lastname: "Butkus",
+  getFullName: function () {
+    const fullname = this.firstname + " " + this.lastname;
+    return fullname;
+  },
+};
+
+const logName = function (lang1, lang2) {
+  console.log("Logged: " + this.getFullName());
+  console.log("Arguments: " + lang1 + lang2);
+  console.log("=============");
+};
+
+const logPersonName = logName.bind(person);
+
+logPersonName("en ");
+
+logName.call(person, "en ", "es ");
+
+logName.apply(person, ["en ", "es "]);
+
+const logNameBind = function (lang1, lang2) {
+  console.log("Logged: " + this.getFullName());
+}.bind(person);
+
+logNameBind();
+
+(function (lang1, lang2) {
+  console.log("Logged: " + this.getFullName());
+  console.log("Arguments: " + lang1 + lang2);
+  console.log("=============");
+}).apply(person, ["en ", "es "]);
+
+// Function borroeing
+
+const person2 = {
+  firstname: "Jane",
+  lastname: "Doe",
+};
+console.log(person.getFullName.apply(person2));
+
+// Function currying
+
+function multiply(a, b) {
+  return a * b;
 }
 
-// greet("Hi")("Dave");
-const sayHi = greet("Hi");
-// sayHi("Dave");
-
-// With var
-function buildFunctions() {
-  let arr = [];
-  for (var i = 0; i < 3; i++) {
-    arr.push(function () {
-      console.log(i);
-    });
-  }
-  return arr;
-}
-const fs = buildFunctions();
-
-fs[0]();
-fs[1]();
-fs[2]();
-
-// With let
-function buildFunctions2() {
-  let arr = [];
-  for (let i = 0; i < 3; i++) {
-    arr.push(function () {
-      console.log(i);
-    });
-  }
-  return arr;
-}
-const fs2 = buildFunctions2();
-
-fs2[0]();
-fs2[1]();
-fs2[2]();
-
-// With var using closures
-function buildFunctions3() {
-  let arr = [];
-  for (var i = 0; i < 3; i++) {
-    arr.push(
-      (function (j) {
-        return function () {
-          console.log(j);
-        };
-      })(i)
-    );
-  }
-  return arr;
-}
-const fs3 = buildFunctions3();
-
-fs3[0]();
-fs3[1]();
-fs3[2]();
-
-function outer() {
-  let count = 0; // Outer scope variable
-  return function inner() {
-    count++; // Accesses `count` from the outer scope
-    console.log(count);
-  };
+function multiplyByTwo(b) {
+  const a = 2;
+  return a * b;
 }
 
-const increment = outer(); // outer() returns `inner`
-increment(); // 1
-increment(); // 2
-increment(); // 3
+const myltiplyByTwo = multiply.bind(this, 2);
+console.log(multiplyByTwo(4));
 
-outer()(); // 1
-outer()(); // 1
-outer()(); // 1
-
-// Function Factories
-
-function makeGreeting(language) {
-  return function (firstname, lastname) {
-    if (language === "en") {
-      console.log("Hello " + firstname + " " + lastname);
-    }
-    if (language === "es") {
-      console.log("Hola " + firstname + " " + lastname);
-    }
-  };
-}
-
-const greetEnglish = makeGreeting("en");
-const greetSpanish = makeGreeting("es");
-
-greetEnglish("Dave", "Butkus");
-greetSpanish("Dave", "Butkus");
-
-// Closures and Callbacks
-
-function sayHiLater() {
-  const greeting = "Hi";
-
-  setTimeout(function () {
-    console.log(greeting);
-  }, 3000);
-}
-
-sayHiLater();
-
-function sayHiLater() {
-  setTimeout(() => {
-    console.log("Hi");
-  }, 3000);
-}
-
-sayHiLater();
-
-document.addEventListener("click", () => {
-  console.log("Hi from click");
-});
-
-function tellMeWhenDone(callback) {
-  const a = 1000;
-  const b = 2000;
-
-  callback();
-}
-
-tellMeWhenDone(function () {
-  alert("I am done - alert");
-});
-tellMeWhenDone(function () {
-  console.log("I am done - log");
-});
+const myltiplyByThree = multiply.bind(this, 3);
+console.log(myltiplyByThree(4));
