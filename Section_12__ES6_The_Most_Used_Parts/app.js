@@ -1,4 +1,5 @@
 let myVar = 1;
+// let
 
 {
   let myVar = 2;
