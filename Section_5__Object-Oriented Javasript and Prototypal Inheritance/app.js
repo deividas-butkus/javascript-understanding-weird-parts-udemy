@@ -1,27 +1,35 @@
-const person = {
-  firstname: "Default",
-  lastname: "Default",
-  getFullName: function () {
-    return this.firstname + " " + this.lastname;
-  },
-};
+// Understanding the Prorotype
 
-console.log(person.getFullName());
+// const person = {
+//   firstname: "Default",
+//   lastname: "Default",
+//   getFullName: function () {
+//     return this.firstname + " " + this.lastname;
+//   },
+// };
 
-const john = {
-  firstname: "John",
-  lastname: "Doe",
-};
+// console.log(person.getFullName());
 
-// ! DON"T DO THIS ever - for demo purposes only
-john.__proto__ = person;
+// const john = {
+//   firstname: "John",
+//   lastname: "Doe",
+// };
 
-console.log(john.getFullName());
-console.log(john.firstname);
+// // ! DON"T DO THIS ever - for demo purposes only
+// john.__proto__ = person;
 
-const jane = {
-  firstname: "Jane",
-};
+// console.log(john.getFullName());
+// console.log(john.firstname);
 
-jane.__proto__ = person;
-console.log(jane.getFullName());
+// const jane = {
+//   firstname: "Jane",
+// };
+
+// jane.__proto__ = person;
+// console.log(jane.getFullName());
+
+// Everything is an Object )or a Primitive)
+
+const a = {};
+const b = function () {};
+const c = [];
