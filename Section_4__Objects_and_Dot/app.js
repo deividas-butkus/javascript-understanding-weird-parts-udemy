@@ -269,23 +269,60 @@
 
 // Syntax Parsers, utomatic Semicolon Insertion, Whitespace
 
-function getPerson() {
-  return { firstname: "Dave", lastname: "Butkus", address: "Žuklausko g." };
+// function getPerson() {
+//   return { firstname: "Dave", lastname: "Butkus", address: "Žuklausko g." };
+// }
+
+// console.log(getPerson());
+
+// let // firstanem of the person
+//   firstname,
+//   //lastname of the person
+//   lastname,
+//   // the language
+//   // can be "en", "lt", or not provided
+//   language;
+
+// const person = {
+//   firstname: "Petras",
+//   lastname: "Kukuraitis",
+// };
+
+// console.log(person);
+
+// IIFEs - Immediatelly Invioked Function Expressions
+
+// Fn statement
+function greet(name) {
+  console.log("Hello " + name);
+}
+greet("Dave");
+
+// Using a fn expression
+const greetFn = function (name) {
+  console.log("Hello " + name);
+};
+greetFn("Dave");
+
+// Using an Immediately Invoked Frunction Expression (IIFE)
+
+// const greeting = (function (name) {
+//   return "Hello " + name;
+// })("Dave");
+// console.log(greeting);
+
+3;
+("I'm a string");
+{
+  name: "Dave";
 }
 
-console.log(getPerson());
+const firstname = "Dave";
 
-let // firstanem of the person
-  firstname,
-  //lastname of the person
-  lastname,
-  // the language
-  // can be "en", "lt", or not provided
-  language;
+(function (global, name) {
+  const greeting = "Inside IFFE: Hello ";
+  global.greeting = "Hello";
+  console.log(greeting + name);
+})(window, firstname); // IIFE
 
-const person = {
-  firstname: "Petras",
-  lastname: "Kukuraitis",
-};
-
-console.log(person);
+console.log(greeting);
