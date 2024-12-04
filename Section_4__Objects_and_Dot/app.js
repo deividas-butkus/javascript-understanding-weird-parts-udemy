@@ -204,38 +204,65 @@
 
 // Arrays, fn arguments vs. default values and ...rest
 
-const arr = [
-  1,
-  false,
-  { name: "Dave", address: "Žukausko g. 17-5" },
-  function (name) {
-    let greeting = "Hello ";
-    console.log(greeting + name);
-  },
-  "hello",
-];
+// const arr = [
+//   1,
+//   false,
+//   { name: "Dave", address: "Žukausko g. 17-5" },
+//   function (name) {
+//     let greeting = "Hello ";
+//     console.log(greeting + name);
+//   },
+//   "hello",
+// ];
 
-console.log(arr);
-arr[3](arr[2].name);
-arr[3](arr[2]["name"]);
+// console.log(arr);
+// arr[3](arr[2].name);
+// arr[3](arr[2]["name"]);
 
-function greet(firstname, lastname, language = "English", ...rest) {
-  //   language = language || "English";
+// function greet(firstname, lastname, language = "English", ...rest) {
+//   //   language = language || "English";
 
-  if (!arguments.length) {
-    console.log("Missing params");
-    console.log("----------------");
-    return;
+//   if (!arguments.length) {
+//     console.log("Missing params");
+//     console.log("----------------");
+//     return;
+//   }
+//   console.log(firstname);
+//   console.log(lastname);
+//   console.log(language);
+//   console.log(arguments);
+//   console.log("---------------");
+// }
+
+// greet();
+// greet("Dave");
+// greet("Dave", "Butkus");
+// greet("Dave", "Butkus", "Lithuanian");
+// greet("Dave", "Butkus", "Lithuanian", 10, false, "belekas");
+
+// Function overloading
+function greet(firstname, lastname, language) {
+  language = language || "English";
+
+  if (language === "en") {
+    console.log("Hello " + firstname + " " + lastname);
+  } else if (language === "lt") {
+    console.log("Labas " + firstname + " " + lastname);
+  } else {
+    console.log("Kukū " + firstname + " " + lastname);
   }
-  console.log(firstname);
-  console.log(lastname);
-  console.log(language);
-  console.log(arguments);
-  console.log("---------------");
+}
+greet("Dave", "Butkus", "English");
+greet("Dave", "Butkus", "Lithuanian");
+greet("Dave", "Butkus");
+
+function greetEnglish(firstname, lastname) {
+  greet(firstname, lastname, "en");
 }
 
-greet();
-greet("Dave");
-greet("Dave", "Butkus");
-greet("Dave", "Butkus", "Lithuanian");
-greet("Dave", "Butkus", "Lithuanian", 10, false, "belekas");
+function greetLithuanian(firstname, lastname) {
+  greet(firstname, lastname, "lt");
+}
+
+greetEnglish("Dave", "Butkus");
+greetLithuanian("Dave", "Butkus");
