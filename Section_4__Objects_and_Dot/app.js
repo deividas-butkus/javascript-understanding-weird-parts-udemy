@@ -465,62 +465,123 @@
 //   console.log("I am done - log");
 // });
 
-const person = {
-  firstname: "Dave",
-  lastname: "Butkus",
-  getFullName: function () {
-    const fullname = this.firstname + " " + this.lastname;
-    return fullname;
-  },
-};
+// const person = {
+//   firstname: "Dave",
+//   lastname: "Butkus",
+//   getFullName: function () {
+//     const fullname = this.firstname + " " + this.lastname;
+//     return fullname;
+//   },
+// };
 
-const logName = function (lang1, lang2) {
-  console.log("Logged: " + this.getFullName());
-  console.log("Arguments: " + lang1 + lang2);
-  console.log("=============");
-};
+// const logName = function (lang1, lang2) {
+//   console.log("Logged: " + this.getFullName());
+//   console.log("Arguments: " + lang1 + lang2);
+//   console.log("=============");
+// };
 
-const logPersonName = logName.bind(person);
+// const logPersonName = logName.bind(person);
 
-logPersonName("en ");
+// logPersonName("en ");
 
-logName.call(person, "en ", "es ");
+// logName.call(person, "en ", "es ");
 
-logName.apply(person, ["en ", "es "]);
+// logName.apply(person, ["en ", "es "]);
 
-const logNameBind = function (lang1, lang2) {
-  console.log("Logged: " + this.getFullName());
-}.bind(person);
+// const logNameBind = function (lang1, lang2) {
+//   console.log("Logged: " + this.getFullName());
+// }.bind(person);
 
-logNameBind();
+// logNameBind();
 
-(function (lang1, lang2) {
-  console.log("Logged: " + this.getFullName());
-  console.log("Arguments: " + lang1 + lang2);
-  console.log("=============");
-}).apply(person, ["en ", "es "]);
+// (function (lang1, lang2) {
+//   console.log("Logged: " + this.getFullName());
+//   console.log("Arguments: " + lang1 + lang2);
+//   console.log("=============");
+// }).apply(person, ["en ", "es "]);
 
-// Function borroeing
+// // Function borroeing
 
-const person2 = {
-  firstname: "Jane",
-  lastname: "Doe",
-};
-console.log(person.getFullName.apply(person2));
+// const person2 = {
+//   firstname: "Jane",
+//   lastname: "Doe",
+// };
+// console.log(person.getFullName.apply(person2));
 
-// Function currying
+// // Function currying
 
-function multiply(a, b) {
-  return a * b;
+// function multiply(a, b) {
+//   return a * b;
+// }
+
+// function multiplyByTwo(b) {
+//   const a = 2;
+//   return a * b;
+// }
+
+// const myltiplyByTwo = multiply.bind(this, 2);
+// console.log(multiplyByTwo(4));
+
+// const myltiplyByThree = multiply.bind(this, 3);
+// console.log(myltiplyByThree(4));
+
+// Functional programming
+
+function mapForEach(arr, fn) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(fn(arr[i]));
+  }
+  return newArr;
 }
 
-function multiplyByTwo(b) {
-  const a = 2;
-  return a * b;
-}
+const arr1 = [1, 2, 3];
+console.log(arr1);
 
-const myltiplyByTwo = multiply.bind(this, 2);
-console.log(multiplyByTwo(4));
+// const arr2 = [];
+// for (let i = 0; i < arr1.length; i++) {
+//   arr2.push(arr1[i] * 2);
+// }
+// arr1.forEach((el) => arr2.push(el * 2));
 
-const myltiplyByThree = multiply.bind(this, 3);
-console.log(myltiplyByThree(4));
+const arr2 = mapForEach(arr1, function (item) {
+  return item * 2;
+});
+console.log(arr2);
+
+const arr3 = mapForEach(arr1, function (item) {
+  return item > 2;
+});
+console.log(arr3);
+
+const checkPastLimit = function (limiter, item) {
+  return item > limiter;
+};
+
+const arr4 = mapForEach(arr1, checkPastLimit.bind(this, 2));
+console.log(arr4);
+
+const checkPastLimitSimplified = function (limiter) {
+  return function (limiter, item) {
+    return item > limiter;
+  }.bind(this, limiter);
+};
+
+const arr5 = mapForEach(arr1, checkPastLimitSimplified(3));
+console.log(arr5);
+
+// underscore.js
+import map from "./node_modules/underscore/modules/map.js";
+import filter from "./node_modules/underscore/modules/filter.js";
+
+const arr6 = map(arr1, function (item) {
+  return item * 10;
+});
+console.log(arr6);
+
+const arr7 = filter([2, 3, 4, 5, 6, 7], function (item) {
+  return item % 2 === 0;
+});
+console.log(arr7);
+
+// lodash.com
