@@ -30,21 +30,21 @@
 
 // console.log(greet);
 
-// Arrow Functions
+// // Arrow Functions
 
-function greeter(name) {
-  return "Hello " + name;
-}
-console.log(greeter("Dave"));
+// function greeter(name) {
+//   return "Hello " + name;
+// }
+// console.log(greeter("Dave"));
 
-const greeterArrow = (name) => "Hello " + name;
-console.log(greeterArrow("Dave"));
+// const greeterArrow = (name) => "Hello " + name;
+// console.log(greeterArrow("Dave"));
 
-function greet(greetFunc, name) {
-  return greetFunc(name);
-}
+// function greet(greetFunc, name) {
+//   return greetFunc(name);
+// }
 
-console.log(greet((name) => "Hi " + name, "Deividas"));
+// console.log(greet((name) => "Hi " + name, "Deividas"));
 
 // function Timer() {
 //   this.seconds = 0;
@@ -56,11 +56,27 @@ console.log(greet((name) => "Hi " + name, "Deividas"));
 
 // const timer = new Timer();
 
-const greeter2 = {
-  name: "Dave",
-  greet: function () {
-    return "Hello " + this.name;
-  },
+// const greeter2 = {
+//   name: "Dave",
+//   greet: function () {
+//     return "Hello " + this.name;
+//   },
+// };
+
+// console.log(greeter2.greet());
+
+// Destructuring
+
+const greetings = ["Hello", "Hi"];
+
+const [a, b] = greetings;
+
+console.log(a, b);
+
+const person = {
+  firstname: "Dave",
+  lastname: "Butkus",
 };
 
-console.log(greeter2.greet());
+const { lastname, firstname } = person;
+console.log(firstname, lastname);
