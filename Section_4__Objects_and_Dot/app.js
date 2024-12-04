@@ -241,28 +241,51 @@
 // greet("Dave", "Butkus", "Lithuanian", 10, false, "belekas");
 
 // Function overloading
-function greet(firstname, lastname, language) {
-  language = language || "English";
+// function greet(firstname, lastname, language) {
+//   language = language || "English";
 
-  if (language === "en") {
-    console.log("Hello " + firstname + " " + lastname);
-  } else if (language === "lt") {
-    console.log("Labas " + firstname + " " + lastname);
-  } else {
-    console.log("Kukū " + firstname + " " + lastname);
-  }
+//   if (language === "en") {
+//     console.log("Hello " + firstname + " " + lastname);
+//   } else if (language === "lt") {
+//     console.log("Labas " + firstname + " " + lastname);
+//   } else {
+//     console.log("Kukū " + firstname + " " + lastname);
+//   }
+// }
+// greet("Dave", "Butkus", "English");
+// greet("Dave", "Butkus", "Lithuanian");
+// greet("Dave", "Butkus");
+
+// function greetEnglish(firstname, lastname) {
+//   greet(firstname, lastname, "en");
+// }
+
+// function greetLithuanian(firstname, lastname) {
+//   greet(firstname, lastname, "lt");
+// }
+
+// greetEnglish("Dave", "Butkus");
+// greetLithuanian("Dave", "Butkus");
+
+// Syntax Parsers, utomatic Semicolon Insertion, Whitespace
+
+function getPerson() {
+  return { firstname: "Dave", lastname: "Butkus", address: "Žuklausko g." };
 }
-greet("Dave", "Butkus", "English");
-greet("Dave", "Butkus", "Lithuanian");
-greet("Dave", "Butkus");
 
-function greetEnglish(firstname, lastname) {
-  greet(firstname, lastname, "en");
-}
+console.log(getPerson());
 
-function greetLithuanian(firstname, lastname) {
-  greet(firstname, lastname, "lt");
-}
+let // firstanem of the person
+  firstname,
+  //lastname of the person
+  lastname,
+  // the language
+  // can be "en", "lt", or not provided
+  language;
 
-greetEnglish("Dave", "Butkus");
-greetLithuanian("Dave", "Butkus");
+const person = {
+  firstname: "Petras",
+  lastname: "Kukuraitis",
+};
+
+console.log(person);
