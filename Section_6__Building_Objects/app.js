@@ -113,3 +113,21 @@ for (const key in dave) {
   }
   //   console.log(`${key}: ${dave[key]}`);
 }
+
+// Object.create and Pure Prototypal Inheritance
+
+//polyfill
+
+const person6 = {
+  firstname: "Default",
+  lastname: "Default",
+  greet: function () {
+    return "Hi " + this.firstname;
+  },
+};
+
+const john = Object.create(person6);
+console.log(Object.getPrototypeOf(john) === person6);
+john.firstname = "John";
+console.log(john.greet());
+console.log(john);
