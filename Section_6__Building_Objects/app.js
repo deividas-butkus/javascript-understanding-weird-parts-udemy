@@ -42,3 +42,13 @@ Person.prototype.getFormalFullName = function () {
 };
 
 console.log(dave.getFormalFullName());
+
+// Dangerous Aside: "new" and functions
+
+const anupras = Person("Anupras", "Anupraitis");
+console.log(anupras);
+// console.log(anupras.getFullName());
+
+const petras = Person("Petras", "Petraitis");
+console.log(petras);
+// console.log(petras.getFullName());
