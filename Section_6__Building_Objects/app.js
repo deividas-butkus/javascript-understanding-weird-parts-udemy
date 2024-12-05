@@ -26,3 +26,19 @@ console.log(dave);
 
 const jane = new Person("Jane", "Doe");
 console.log(jane);
+
+// Function Constructos and "prototype"
+
+Person.prototype.getFullName = function () {
+  return this.firstname + " " + this.lastname;
+};
+
+console.log(dave.getFullName());
+
+console.log(jane.getFullName());
+
+Person.prototype.getFormalFullName = function () {
+  return this.lastname + ", " + this.firstname;
+};
+
+console.log(dave.getFormalFullName());
