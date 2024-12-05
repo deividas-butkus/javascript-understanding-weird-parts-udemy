@@ -49,3 +49,18 @@ console.log(typeof null); // a bug since, like, forever...
 
 const z = function () {};
 console.log(typeof z);
+
+//  Strict Mode
+
+function logNewPerson() {
+  // "use strict";
+
+  let person2;
+  persom2 = {};
+  console.log(persom2);
+}
+
+let person;
+persom = {};
+console.log(persom);
+logNewPerson();
