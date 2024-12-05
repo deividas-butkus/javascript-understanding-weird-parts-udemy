@@ -52,3 +52,40 @@ console.log(anupras);
 const petras = Person("Petras", "Petraitis");
 console.log(petras);
 // console.log(petras.getFullName());
+
+// Conceptual Aside: Built-In Function Constructors
+
+const a = new Number("3");
+console.log(a.toFixed(2));
+
+const b = new String("Dave");
+console.log(b.indexOf("e"));
+console.log(b.indexOf("jo"));
+
+console.log("Dave".length);
+
+const c = new Date("2024-12-05");
+console.log(c);
+
+String.prototype.isLengthGraterThan = function (limit) {
+  return this.length > limit;
+};
+console.log("Dave".isLengthGraterThan(4));
+
+Number.prototype.isPositive = function () {
+  return this > 0;
+};
+console.log((3).isPositive());
+const d = 3;
+console.log(d.isPositive());
+
+class Utils {
+  static isLengthGraterThan(str, limit) {
+    return str > limit;
+  }
+  static isPositive(num) {
+    return num > 0;
+  }
+}
+console.log(Utils.isLengthGraterThan("Dave"));
+console.log(Utils.isPositive(3));
