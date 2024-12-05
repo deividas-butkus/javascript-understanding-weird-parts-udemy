@@ -89,3 +89,27 @@ class Utils {
 }
 console.log(Utils.isLengthGraterThan("Dave"));
 console.log(Utils.isPositive(3));
+
+// Dangerous Aside: Arrays and for ... in
+
+Array.prototype.myCustomFeature = "cool";
+
+const arr = ["Dave", "Hane", "Anupras"];
+
+for (const prop in arr) {
+  console.log(prop + ": " + arr[prop]);
+}
+
+const keyValuePairs = Object.entries(dave);
+const keys = Object.keys(dave);
+const values = Object.values(dave);
+console.log(keyValuePairs);
+console.log(keys);
+console.log(values);
+
+for (const key in dave) {
+  if (dave.hasOwnProperty(key)) {
+    console.log(`${key}: ${dave[key]}`);
+  }
+  //   console.log(`${key}: ${dave[key]}`);
+}
